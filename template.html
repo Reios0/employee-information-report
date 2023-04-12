@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Employee Information Report</title>
+    <style>
+        @page {
+            size: Landscape;
+        }
+
+        .graph {
+            padding-bottom: 20px;
+        }
+
+        .double-graph {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        table {
+            display: relative;
+            border-collapse: collapse;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>Employee Information Report</h1>
+
+        <h2>Total Annual Salaries</h2>
+        <div>
+            <h3>By Country</h3>
+            <div class="graph double-graph">
+                <div>
+                    {{ salary_country }}
+                </div>
+                <div>
+                    <img src="{{ salary_country_plot }}">
+                </div>
+            </div>
+        </div>
+        <div>
+            <h3>By City</h3>
+            <div class="graph double-graph">
+                <div>
+                    {{ salary_city }}
+                </div>
+                <div>
+                    <img src="{{ salary_city_plot }}">
+                </div>
+            </div>
+        </div>
+        <div>
+            <h3>By Department</h3>
+            <div class="graph double-graph">
+                <div>
+                    {{ salary_department }}
+                </div>
+                <div>
+                    <img src="{{ salary_department_plot }}">
+                </div>
+            </div>
+        </div>
+
+        <h2>Average Bonus % and Average Annual Salary</h2>
+        <h3>By Country</h3>
+        <div class="graph">
+            {{ avg_bonus_salary_country }}
+        </div>
+        <h3>By City</h3>
+        <div class="graph">
+            {{ avg_bonus_salary_city }}
+        </div>
+
+        <h2>Average Age</h2>
+        <h3>By Country</h3>
+        <div class="graph">
+            {{ avg_age_country }}
+        </div>
+        <h3>By City</h3>
+        <div class="graph">
+            {{ avg_age_city }}
+        </div>
+        <h3>By Department</h3>
+        <div class="graph">
+            {{ avg_age_department }}
+        </div>
+
+        <h2>Number of Employees</h2>
+        <h3>By Department</h3>
+        <div class="graph double-graph">
+            <div>
+                {{ num_employee_department }}
+            </div>
+            <div>
+                <img src="{{ num_employee_department_plot }}">
+            </div>
+        </div>
+        <h3>By Position</h3>
+        <div class="graph double-graph">
+            <div>
+                {{ num_employee_position }}
+            </div>
+            <div>
+                <img src="{{ num_employee_position_plot }}">
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
