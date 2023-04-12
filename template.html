@@ -5,55 +5,65 @@
     <meta charset="UTF-8">
     <title>Employee Information Report</title>
     <style>
-        .report-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: auto;
+        @page {
+            size: Landscape;
         }
+
         .graph {
             padding-bottom: 20px;
         }
+
         .double-graph {
-            width: 100%;
             display: flex;
             flex-direction: row;
-            align-content: center;
+            align-items: center;
             justify-content: space-around;
+        }
+
+        table {
+            display: relative;
+            border-collapse: collapse;
+            width: 100%;
         }
     </style>
 </head>
 
 <body>
-    <div class="report-container">
+    <div>
         <h1>Employee Information Report</h1>
 
         <h2>Total Annual Salaries</h2>
-        <h3>By Country</h3>
-        <div class="graph double-graph">
-            <div>
-                {{ salary_country }}
-            </div>
-            <div>
-                <img src="plots/salary_country.png">
-            </div>
-        </div>
-        <h3>By City</h3>
-        <div class="graph double-graph">
-            <div>
-                {{ salary_city }}
-            </div>
-            <div>
-                <img src="plots/salary_city.png">
+        <div>
+            <h3>By Country</h3>
+            <div class="graph double-graph">
+                <div>
+                    {{ salary_country }}
+                </div>
+                <div>
+                    <img src="{{ salary_country_plot }}">
+                </div>
             </div>
         </div>
-        <h3>By Department</h3>
-        <div class="graph double-graph">
-            <div>
-                {{ salary_department }}
+        <div>
+            <h3>By City</h3>
+            <div class="graph double-graph">
+                <div>
+                    {{ salary_city }}
+                </div>
+                <div>
+                    <img src="{{ salary_city_plot }}">
+                </div>
             </div>
-            <div>
-                <img src="plots/salary_department.png">
+        </div>
+        <div>
+            <h3>By Department</h3>
+            <div class="graph double-graph">
+                <div>
+                    {{ salary_department }}
+                </div>
+                <div>
+                    <img src="{{ salary_department_plot }}">
+                </div>
             </div>
         </div>
 
@@ -66,7 +76,7 @@
         <div class="graph">
             {{ avg_bonus_salary_city }}
         </div>
-        
+
         <h2>Average Age</h2>
         <h3>By Country</h3>
         <div class="graph">
@@ -88,7 +98,7 @@
                 {{ num_employee_department }}
             </div>
             <div>
-                <img src="plots/num_employee_department.png">
+                <img src="{{ num_employee_department_plot }}">
             </div>
         </div>
         <h3>By Position</h3>
@@ -97,11 +107,11 @@
                 {{ num_employee_position }}
             </div>
             <div>
-                <img src="plots/num_employee_position.png">
+                <img src="{{ num_employee_position_plot }}">
             </div>
         </div>
     </div>
-    
+
 </body>
 
 </html>
