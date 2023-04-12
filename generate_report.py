@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 import matplotlib.pyplot as plt
 from jinja2 import Environment, FileSystemLoader
@@ -95,3 +96,28 @@ if __name__ == "__main__":
     plt.legend(loc=(1, -0.5))
     num_employee_position_plot.figure.savefig('plots/num_employee_position.png', bbox_inches="tight")
     
+    current_folder = os.path.dirname(os.path.abspath(__file__))
+    
+    # Render template html with dataframes
+    env = Environment(loader=FileSystemLoader('.'))
+    template = env.get_template('template.html')
+    template_vars = {
+        'salary_country': salary_country.to_html(),
+        'salary_country_plot': 'file:\\' + os.path.join(current_folder, 'plots', 'salary_country.png'),
+        'salary_city': salary_city.to_html(),
+        'salary_city_plot': 'file:\\' + os.path.join(current_folder, 'plots', 'salary_city.png'),
+        'salary_department': salary_department.to_html(),
+        'salary_department_plot': 'file:\\' + os.path.join(current_folder, 'plots', 'salary_department.png'),
+        'avg_bonus_salary_country': avg_bonus_salary_country.to_html(),
+        'avg_bonus_salary_city': avg_bonus_salary_city.to_html(),
+        'avg_age_country': avg_age_country.to_html(),
+        'avg_age_city': avg_age_city.to_html(),
+        'avg_age_department': avg_age_department.to_html(),
+        'num_employee_department': num_employee_department.to_html(),
+        'num_employee_department_plot': 'file:\\' + os.path.join(current_folder, 'plots', 'num_employee_department.png'),
+        'num_employee_position': num_employee_position.to_html(),
+        'num_employee_position_plot': 'file:\\' + os.path.join(current_folder, 'plots', 'num_employee_position.png'),
+    }
+    html_out = template.render(template_vars)
+    # Generate pdf
+    HTML(string=html_out, base_url=current_folder).write_pdf('report.pdf', presentational_hints=True)
